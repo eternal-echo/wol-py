@@ -27,10 +27,11 @@
 
 1. 克隆或下载项目代码到本地。
 2. 在项目根目录下创建一个 `.env` 文件，并设置阿里云的AccessKey ID和Secret。
-3. 安装所需的依赖。
+3. 安装所需的**依赖**。
 
 ```sh
-python3 setup.py install
+# python3 setup.py install
+pip install -r requirements.txt
 ```
 
 ## 使用方法
@@ -38,7 +39,7 @@ python3 setup.py install
 在命令行中执行以下命令，其中 `1` 是要唤醒的电脑ID（取值范围为 1 到 4）。
 
 ```sh
-python wol.py 1
+python .\src\wol.py 1
 ```
 
 ## 使用的API
