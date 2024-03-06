@@ -80,8 +80,8 @@ class Sample:
         client = Sample.create_client(os.environ['ALIBABA_CLOUD_ACCESS_KEY_ID'], os.environ['ALIBABA_CLOUD_ACCESS_KEY_SECRET'])
 
         # 检查命令行参数以确定控制哪台电脑
-        if not args or args[0] not in ['1', '2', '3', '4']:
-            raise ValueError("请提供有效的电脑ID（1, 2, 3, 4）作为命令行参数。")
+        if not args or args[0] not in ['1', '2', '3', '4', '5']:
+            raise ValueError("请提供有效的电脑ID（1, 2, 3, 4, 5）作为命令行参数。")
 
         # 设置items参数以控制对应的电脑
         computer_id = args[0]
@@ -112,10 +112,6 @@ class Sample:
         # 工程代码泄露可能会导致 AccessKey 泄露，并威胁账号下所有资源的安全性。以下代码示例仅供参考，建议使用更安全的 STS 方式，更多鉴权访问方式请参见：https://help.aliyun.com/document_detail/378659.html
         client = Sample.create_client(os.environ['ALIBABA_CLOUD_ACCESS_KEY_ID'], os.environ['ALIBABA_CLOUD_ACCESS_KEY_SECRET'])
 
-        # 检查命令行参数以确定控制哪台电脑
-        if not args or args[0] not in ['1', '2', '3', '4']:
-            raise ValueError("请提供有效的电脑ID（1, 2, 3, 4）作为命令行参数。")
-        
         # 设置items参数以控制对应的电脑
         computer_id = args[0]
         items = '{"SocketSwitch_' + computer_id + '":1}'
@@ -139,4 +135,13 @@ class Sample:
 
 
 if __name__ == '__main__':
-    Sample.main(sys.argv[1:])
+    args = sys.argv[1:]
+    # 检查命令行参数以确定控制哪台电脑
+    if not args or args[0] not in ['1', '2', '3', '4', '5']:
+        # 让用户输入电脑ID
+        computer_id = input("请输入电脑ID（1, 2, 3, 4, 5）：")
+        if computer_id not in ['1', '2', '3', '4', '5']:
+            raise ValueError("电脑ID无效。")
+        args = [computer_id]
+    
+    Sample.main(args)
